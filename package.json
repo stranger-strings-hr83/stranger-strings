@@ -1,0 +1,34 @@
+{
+  "name": "thesis",
+  "version": "1.0.0",
+  "description": "catalog service",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "catalog": "rm -rf catalog/database/migrations && rm -rf catalog/database/seeds && npm run catalog1",
+    "catalog1": "knex migrate:make tables && npm run catalog2",
+    "catalog2": "cp catalog/database/scripts/createTables.js catalog/database/migrations/* && npm run catalog3",
+    "catalog3": "knex migrate:latest && knex seed:make data",
+    "catalog4": "cp catalog/database/scripts/populateTables.js catalog/database/seeds/data.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vmchau/stranger-strings.git"
+  },
+  "keywords": [
+    "netflix",
+    "simulation"
+  ],
+  "author": "Vu Chau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vmchau/stranger-strings/issues"
+  },
+  "homepage": "https://github.com/vmchau/stranger-strings#readme",
+  "dependencies": {
+    "bookshelf": "^0.12.0",
+    "express": "^4.16.2",
+    "knex": "^0.14.2",
+    "pg": "^7.4.0"
+  }
+}
