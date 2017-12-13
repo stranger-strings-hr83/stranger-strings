@@ -1,5 +1,4 @@
 let environment = 'production' || `${process.env.NODE_ENV}`;
-console.log(`${process.env.NODE_ENV}`);
 module.exports = {
 	development: {
 		client: 'pg',

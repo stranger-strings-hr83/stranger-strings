@@ -8,8 +8,9 @@
     "catalog": "rm -rf catalog/database/migrations && rm -rf catalog/database/seeds && npm run catalog1",
     "catalog1": "knex migrate:make tables && npm run catalog2",
     "catalog2": "cp catalog/database/scripts/createTables.js catalog/database/migrations/* && npm run catalog3",
-    "catalog3": "knex migrate:latest && knex seed:make data",
-    "catalog4": "cp catalog/database/scripts/populateTables.js catalog/database/seeds/data.js"
+    "catalog3": "knex migrate:latest && knex seed:make data && npm run catalog4",
+    "catalog4": "cp catalog/database/scripts/populateTables.js catalog/database/seeds/data.js && npm run catalog5",
+    "catalog5": "knex seed:run"
   },
   "repository": {
     "type": "git",
