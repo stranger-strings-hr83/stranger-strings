@@ -42,7 +42,7 @@ for (var i = 0; i < 100; i++) {
 	first.push(obj);
 	// console.log(first);
 }
-module.exports = {first};
+
 // knex.batchInsert('content', first);
 // console.log(first.length);
 	// knex.batchInsert('content', )

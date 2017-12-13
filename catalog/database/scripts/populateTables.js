@@ -20,42 +20,48 @@ exports.seed = function(knex, Promise) {
     let catalogPromises = [];
   return knex('genre').del()
     .then(() => {
-
       // Populate genre table
       for (let i = 0; i < genre.length; i++) {
         catalogPromises.push(createGenre(knex, genre[i]));
       }
-
-      // let first = [];
-      // for (var i = 0; i < 100; i++) {
-      //   var obj = generateRandomContentVars();
-      //   obj.name = movies[i];
-      //   first.push(obj);
-      //   // console.log(first);
-      // }
-      // // console.log('KNEX', knex);
-      // // knex.batchInsert('content', genre);
-      // knex.transaction(function(tr) {
-      //   return knex.batchInsert('content', first)
-      //   .transacting(tr)
-      // })
-      // // Populate content table
-      // for (let name = 0; name < current + 100000; name++) {
-      //   const obj = generateRandomContentVars(); 
-      //   catalogPromises.push(createContent(knex, movies[name], obj.year, obj.run_time, obj.genreID));
-      // }
      return Promise.all(catalogPromises);
     })
     .then(() => {
       let first = [];
+      console.log('Inserting 2mil!');
       for (var i = 0; i < 2000000; i++) {
         var obj = generateRandomContentVars();
         obj.name = movies[i];
         first.push(obj);
-        // console.log(first);
       }
-      // console.log('KNEX', knex);
-      // knex.batchInsert('content', genre);
+      return knex.transaction(function(tr) {
+        return knex.batchInsert('content', first)
+        .transacting(tr)
+      })
+
+    })
+    .then(() => {
+      let first = [];
+      console.log('Inserting 4mil!');
+      for (var i = 2000000; i < 4000000; i++) {
+        var obj = generateRandomContentVars();
+        obj.name = movies[i];
+        first.push(obj);
+      }
+      return knex.transaction(function(tr) {
+        return knex.batchInsert('content', first)
+        .transacting(tr)
+      })
+
+    })
+    .then(() => {
+      let first = [];
+      console.log('Inserting 6mil!');
+      for (var i = 4000000; i < 6000000; i++) {
+        var obj = generateRandomContentVars();
+        obj.name = movies[i];
+        first.push(obj);
+      }
       return knex.transaction(function(tr) {
         return knex.batchInsert('content', first)
         .transacting(tr)
@@ -63,15 +69,89 @@ exports.seed = function(knex, Promise) {
 
     })
     // .then(() => {
-    //   let catalogPromises = [];
-    //   current += 100000;
-    //   for (let name = current; name < current + 100000; name++) {
-    //     const obj = generateRandomContentVars(); 
-    //     catalogPromises.push(createContent(knex, movies[name], obj.year, obj.run_time, obj.genreID));
+    //   let first = [];
+    //   console.log('Inserting 7mil!');
+    //   for (var i = 6000000; i < 7000000; i++) {
+    //     var obj = generateRandomContentVars();
+    //     obj.name = movies[i];
+    //     first.push(obj);
     //   }
-    //   return Promise.all(catalogPromises);
+    //   return knex.transaction(function(tr) {
+    //     return knex.batchInsert('content', first)
+    //     .transacting(tr)
+    //   })
 
-    // });
+    // })
+    // .then(() => {
+    //   let first = [];
+    //   console.log('Inserting 8mil!');
+    //   for (var i = 7000000; i < 8000000; i++) {
+    //     var obj = generateRandomContentVars();
+    //     obj.name = movies[i];
+    //     first.push(obj);
+    //   }
+    //   return knex.transaction(function(tr) {
+    //     return knex.batchInsert('content', first)
+    //     .transacting(tr)
+    //   })
+
+    // })
+    // .then(() => {
+    //   let first = [];
+    //   console.log('Inserting 8.5mil!');
+    //   for (var i = 8000000; i < 8500000; i++) {
+    //     var obj = generateRandomContentVars();
+    //     obj.name = movies[i];
+    //     first.push(obj);
+    //   }
+    //   return knex.transaction(function(tr) {
+    //     return knex.batchInsert('content', first)
+    //     .transacting(tr)
+    //   })
+
+    // })
+    // .then(() => {
+    //   let first = [];
+    //   console.log('Inserting 9mil!');
+    //   for (var i = 8500000; i < 9000000; i++) {
+    //     var obj = generateRandomContentVars();
+    //     obj.name = movies[i];
+    //     first.push(obj);
+    //   }
+    //   return knex.transaction(function(tr) {
+    //     return knex.batchInsert('content', first)
+    //     .transacting(tr)
+    //   })
+
+    // })
+    // .then(() => {
+    //   let first = [];
+    //   console.log('Inserting 9.5mil!');
+    //   for (var i = 9000000; i < 9500000; i++) {
+    //     var obj = generateRandomContentVars();
+    //     obj.name = movies[i];
+    //     first.push(obj);
+    //   }
+    //   return knex.transaction(function(tr) {
+    //     return knex.batchInsert('content', first)
+    //     .transacting(tr)
+    //   })
+
+    // })
+    // .then(() => {
+    //   let first = [];
+    //   console.log('Inserting 9.5mil!');
+    //   for (var i = 9500000; i < 10000000; i++) {
+    //     var obj = generateRandomContentVars();
+    //     obj.name = movies[i];
+    //     first.push(obj);
+    //   }
+    //   return knex.transaction(function(tr) {
+    //     return knex.batchInsert('content', first)
+    //     .transacting(tr)
+    //   })
+
+    // })
 };
 
 
