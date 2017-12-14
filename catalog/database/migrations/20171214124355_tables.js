@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
   		table.increments('id').primary();
   		table.string('name');
   		table.integer('year');
-  		table.integer('run_time');
+  		// table.integer('run_time');
   		table.integer('genre_id').references('id').inTable('genre').notNullable();
   	}),
   	knex.schema.createTable('movies', function(table) {
@@ -36,11 +36,6 @@ exports.up = function(knex, Promise) {
   		table.string('name');
   		table.integer('run_time');
   		table.integer('seasons_id').references('id').inTable('seasons').notNullable();
-  	}),
-  	knex.schema.createTable('content_videos', function(table) {
-  		table.increments('id').primary();
-  		table.string('src');
-  		table.integer('content_id').references('id').inTable('content').notNullable();
   	})
   ]);
 };
@@ -52,5 +47,5 @@ exports.down = function(knex, Promise) {
     .dropTable('movies')
     .dropTable('seasons')
     .dropTable('shows')
-    .dropTable('content_videos');
+
 };

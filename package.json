@@ -4,6 +4,7 @@
   "description": "catalog service",
   "main": ".eslintrc.js",
   "scripts": {
+    "server": "nodemon /catalog/server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "catalog": "rm -rf catalog/database/migrations && rm -rf catalog/database/seeds && npm run catalog1",
     "catalog1": "knex migrate:make tables && npm run catalog2",
@@ -28,8 +29,10 @@
   "homepage": "https://github.com/vmchau/stranger-strings#readme",
   "dependencies": {
     "bookshelf": "^0.12.0",
+    "elasticsearch": "^14.0.0",
     "express": "^4.16.2",
     "knex": "^0.14.2",
-    "pg": "^7.4.0"
+    "pg": "^7.4.0",
+    "pg-json-data-export": "^0.10.4"
   }
 }
