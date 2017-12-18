@@ -3,6 +3,7 @@ config/development.json
 config/production.json
 config/staging.json
 config/test.json
+video_streaming/videos/video_files
 
 # OS X
 .DS_Store
