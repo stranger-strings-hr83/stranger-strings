@@ -1,7 +1,7 @@
 let table = require('./index.js');
 
 
-let retrieveContentByGenre = function(genreType, callback) {
+let retrieveContentByGenre = (genreType, callback) => {
 	table.Genre
 	  .forge()
 	  .where('name', '=', genreType)
@@ -21,8 +21,33 @@ let retrieveContentByGenre = function(genreType, callback) {
 	  })
 }
 
-let getSimilarContent = function(name, callback) {
-
+let getSimilarContent = (name, callback) => {
+	table.Content
+	  .forge()
+	  .where('name', 'LIKE', '%' + name + '%')
+	  .query()
+	  .select()
+	  .limit(10)
+	  .then(function(model) {
+	  	console.log(model);
+	  	callback(model);
+	  })
 }
 
+let updateTotalViews = (content_id, callback) => {
+	// Select from Content by ID
+	// table.knex('movies')
+	// .where('content_id', '=', content_id)
+	// .increment('total_views', 1);
+
+	table.Movies.query()
+	.where('content_id', '=', content_id)
+	.increment('total_views', 1)
+	.then(function(model) {
+		callback(model);
+	});
+} 
+
 module.exports.retrieveContentByGenre = retrieveContentByGenre;
+module.exports.getSimilarContent = getSimilarContent;
+module.exports.updateTotalViews = updateTotalViews;

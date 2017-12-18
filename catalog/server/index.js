@@ -1,5 +1,8 @@
-let express = require('express');
-let app = express();
+const express = require('express');
+const body = require('body-parser');
+const app = express();
+
+app.use(body.json());
 
 let table = require('../database/index.js')
 let elastic = require('./elasticSearch.js');
@@ -10,15 +13,22 @@ let genre = require('../database/data/genre.js');
 // Getting content by a specific genre
 app.get('/genre', (req, res) => {
 	let randomGenre = Math.floor(Math.random() * 25);
-	// console.log('randomGenre', randomGenre);
 	helpers.retrieveContentByGenre(genre[randomGenre], function(response) {
 		res.json(response);
-		// Need to send back to client server
 	});
 });
 
-app.post('/updateViews', (req, res) => {
 
+app.get('/keywordContent', (req, res) => {
+	helpers.getSimilarContent('County', function(response) {
+		res.json(response);
+	});
+});
+
+app.patch('/updateViews', (req, res) => {
+	helpers.updateTotalViews(2, function() {
+		res.send();
+	})
 });
 
 app.post('/updateTotalbytes', (req, res) => {
