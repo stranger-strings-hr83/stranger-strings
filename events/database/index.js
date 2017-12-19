@@ -1,5 +1,4 @@
 const cassandra = require('cassandra-driver');
-// const bluebird = require('bluebird');
 const uuidv4 = require('uuid/v4');
 
 const client = new cassandra.Client({ contactPoints: ['127.0.0.1'], keyspace: 'events' });
