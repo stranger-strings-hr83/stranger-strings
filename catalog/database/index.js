@@ -30,20 +30,6 @@ let Shows = bookshelf.Model.extend({
 	tableName: 'shows'
 });
 
-
-// let updateTotalViews = (content_id, callback) => {
-// 	// Select from Content by ID
-// 	console.log('content_id:', content_id);
-// 	return knex('movies')
-// 	.where({
-// 		content_id: content_id
-// 	})
-// 	.increment('total_views', 1);
-// }
-
-
-
-// module.exports.updateTotalViews = updateTotalViews;
 module.exports.Genre = Genre;
 module.exports.Content = Content;
 module.exports.Movies = Movies;

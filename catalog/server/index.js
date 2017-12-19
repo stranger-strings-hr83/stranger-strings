@@ -1,54 +1,46 @@
 const express = require('express');
 const body = require('body-parser');
 const app = express();
-
 app.use(body.json());
 
 let table = require('../database/index.js')
 let elastic = require('./elasticSearch.js');
 let helpers = require('../database/helpers.js');
-let genre = require('../database/data/genre.js');
-
 
 // Getting content by a specific genre
 app.get('/genre', (req, res) => {
-	let randomGenre = Math.floor(Math.random() * 25);
-	helpers.retrieveContentByGenre(genre[randomGenre], function(response) {
+	let {genre} = req.body;
+	helpers.retrieveContentByGenre(genre, function(response) {
+		console.log(response)
 		res.json(response);
 	});
 });
 
-
+// Get content by keyword
 app.get('/keywordContent', (req, res) => {
-	helpers.getSimilarContent('County', function(response) {
+	let {content} = req.body;
+	helpers.getKeywordContent(content.toLowerCase(), function(response) {
+		console.log(response)
 		res.json(response);
 	});
 });
 
+// Update total views of 1 show => Set up q later to update multiple at time
 app.patch('/updateViews', (req, res) => {
-	helpers.updateTotalViews(2, function() {
+	let {content_id} = req.body;
+	helpers.updateViews(content_id, function() {
 		res.send();
 	})
 });
 
-app.post('/updateTotalbytes', (req, res) => {
 
+// Update total bytes of 1 show
+app.patch('/updateBytes', (req, res) => {
+	let {content_id, bytes} = req.body;
+	helpers.updateBytes(content_id, bytes, function() {
+		res.send();
+	});
 })
-
-
-// app.post('/add', (req, res) => {
-// 	elastic.addDocument({title: 'action'})
-// 	res.send('hi')
-// });
-
-// app.post('/delete', (req, res) => {
-// 	elastic.indexExists().then(function (exists) {  
-// 	  if (exists) { 
-// 	    return elastic.deleteIndex(); 
-// 	  } 
-// 	})
-// 	res.send('done deleting')
-// })
 
 app.listen(3000, function() {
 	console.log('Server is listening on port 3000');

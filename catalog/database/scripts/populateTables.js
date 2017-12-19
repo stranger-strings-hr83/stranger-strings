@@ -9,7 +9,9 @@ const movies = [];
 for (var i = 0; i < moviesOne.length; i++) {
   for (var j = 0; j < moviesTwo.length; j++) {
     for (var k = 0; k < moviesThree.length; k++) {
-      movies.push(moviesOne[i].name + moviesTwo[j].name + moviesThree[k].name);
+      movies.push(moviesOne[i].name.toLowerCase() + 
+                  moviesTwo[j].name.toLowerCase() + 
+                  moviesThree[k].name.toLowerCase());
     }
   }
 }
