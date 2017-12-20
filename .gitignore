@@ -44,16 +44,18 @@ catalog/database/seeds
 knexfile.js
 
 # Project specific
-client_app/config/development.json
-client_app/config/production.json
-client_app/config/staging.json
-client_app/config/test.json
-client_app/docker-compose.yml
-client_app/Dokcerfile
-client_app/package.json
-client_app/package-lock.json
-client_app/newrelic.jscoverage
-client_app/jmeter.log
+client-app/config/development.json
+client-app/config/production.json
+client-app/config/staging.json
+client-app/config/test.json
+client-app/docker-compose.yml
+client-app/Dokcerfile
+client-app/package.json
+client-app/package-lock.json
+client-app/newrelic.jscoverage
+client-app/jmeter.log
+client-app/siege-4.0.4
+client-app/postgres-data
 # OS X
 .DS_Store
 
